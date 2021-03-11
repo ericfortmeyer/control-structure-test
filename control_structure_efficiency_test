@@ -4,9 +4,9 @@
 declare(strict_types=1);
 
 /* nested files first */
-array_map(function ($file) { require $file; }, glob('**/**/*.php'));
+array_map(function ($file) { require $file; }, glob("**/**/*.php"));
 /* then files with the functions that run tests */
-array_map(function ($file) { require $file; }, glob('**/*.php'));
+array_map(function ($file) { require $file; }, glob("**/*.php"));
 
 $testCaseArguments =
     getTestCases();

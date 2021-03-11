@@ -11,7 +11,7 @@ function checkNextCharacter(bool $previous_result, string $chr) {
 function arrayReduce(array $chars): bool {
     return array_reduce(
         $chars,
-        'checkNextCharacter',
+        "checkNextCharacter",
         true
     );
 }

@@ -12,7 +12,7 @@ function testFunction(callable $function, string $arg, string $label_for_display
     $max = PHP_INT_MIN;
     $min = PHP_INT_MAX;
     $sum = 0;
-    if (in_array($function, ["foreachByRef", "foreachByValue", "arrayReduce"])) $arg = str_split($arg);
+    if ($function <> "regex") $arg = preg_split('//u', $arg, -1, PREG_SPLIT_NO_EMPTY);
     for ($i = 0; $i < TEST_ITERATIONS; ++$i) {
         $result =- hrtime(true);
         $function($arg);

@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+namespace ControlStructureTest\SystemsUnderTest;
+
+use function ControlStructureTest\SystemsUnderTest\ValidatingLogic\isNotAlphanumeric;
+
 function checkNextCharacter(bool $previous_result, string $chr) {
     $chr_code = mb_ord($chr);
     return $previous_result
@@ -11,7 +15,7 @@ function checkNextCharacter(bool $previous_result, string $chr) {
 function arrayReduce(array $chars): bool {
     return array_reduce(
         $chars,
-        "checkNextCharacter",
+        __NAMESPACE__ . "\checkNextCharacter",
         true
     );
 }

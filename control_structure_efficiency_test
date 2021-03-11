@@ -3,15 +3,22 @@
 
 declare(strict_types=1);
 
-/* nested files first */
-array_map(function ($file) { require $file; }, glob("**/**/*.php"));
-/* then files with the functions that run tests */
-array_map(function ($file) { require $file; }, glob("**/*.php"));
+namespace ControlStructureTest;
 
-$testCaseArguments =
-    getTestCases();
+use ControlStructureTest\TestRunning\Runner;
+use ControlStructureTest\TestPrinting\{
+    Printer,
+    Configuration\PrintResultConfig
+};
+
+/* nested files first since they are dependencies */
+array_map(function ($file) { require $file; }, glob("*[!cases]/*/*.php"));
+/* then.. */
+array_map(function ($file) { require $file; }, glob("*[!cases]/*.php"));
+
+$testCaseArguments = (include "test-cases/testCaseArguments.php");
 
 [$results_to_print, $test_iterations, $execution_time_for_tests] =
-    runAllTests(...$testCaseArguments);
+    Runner::runAllTestsWith(...$testCaseArguments);
 
-printTestResults($results_to_print, $test_iterations, $execution_time_for_tests);
+Printer::printTestResultsUsing(new PrintResultConfig($results_to_print, $test_iterations, $execution_time_for_tests));

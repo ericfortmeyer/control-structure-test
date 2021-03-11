@@ -13,7 +13,7 @@ final class Printer
     public static function printTestResultsUsing(PrintResultConfig $config) {
         echo
             self::header(self::RESULT_UNIT_OF_TIME),
-            $config->getResults(),
+            self::printAllTestRuns($config->getResults()),
             self::footer($config);
     }
 
@@ -32,6 +32,48 @@ of a string are alphanumeric.  Results are in ${result_unit_of_time}.
 
 HEADER;
     }
+
+    private static function printAllTestRuns(array $results): void
+    {
+        foreach ($results as $test_case) {
+            self::printOneTestRun($test_case["label"], $test_case["results"], $test_case["winner_info"]);
+        }
+    }
+
+    private static function printOneTestRun(string $label_for_argument, array $results, array $winner_info): void
+    {
+        self::printArgumentLabel($label_for_argument);
+        foreach ($results as $result) {
+            self::printTestResult(...$result);
+        }
+        self::printWinnerInfo($winner_info);
+    }
+    
+    private static function printArgumentLabel(string $label_for_argument): void
+    {
+        echo "TEST using ${label_for_argument} as an argument" . PHP_EOL . PHP_EOL;
+    }
+    
+    private static function printWinnerInfo(array $winner_info): void
+    {
+        $winner = $winner_info[0];
+        $min = $winner_info[1];
+        echo "The winner is ${winner} averaging ${min}" . PHP_EOL . PHP_EOL;
+    }
+
+    private static function printTestResult(string $label_for_display, int $max, int $min, int $average): void
+    {
+        echo <<<TEST_RESULT
+    
+    ${label_for_display}:
+        max     ${max}
+        min     ${min}
+        average ${average}
+    
+    
+TEST_RESULT;
+    }
+
 
     private static function footer(PrintResultConfig $config,): string {
         $php_version = PHP_VERSION;

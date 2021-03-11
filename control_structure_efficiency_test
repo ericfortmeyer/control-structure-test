@@ -12,11 +12,11 @@ use ControlStructureTest\TestPrinting\{
 };
 
 /* nested files first since they are dependencies */
-array_map(function ($file) { require $file; }, glob("*[!cases]/*/*.php"));
+array_map(function ($file) { require $file; }, glob("*/*/*.php"));
 /* then.. */
-array_map(function ($file) { require $file; }, glob("*[!cases]/*.php"));
+array_map(function ($file) { require $file; }, glob("*/*.php"));
 
-$testCaseArguments = (include "test-cases/testCaseArguments.php");
+$testCaseArguments = (include "test_case_arguments.php");
 
 [$results_to_print, $test_iterations, $execution_time_for_tests] =
     Runner::runAllTestsWith(...$testCaseArguments);

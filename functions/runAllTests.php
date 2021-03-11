@@ -32,7 +32,7 @@ function testFunction(callable $function, string $arg): array {
         $min = $min < $result ? $min : $result;
         $sum += $result;
     }
-    $average = intdiv($sum, TEST_ITERATIONS);
+    $average = intdiv($sum, intval(TEST_ITERATIONS));
     return [$max, $min, $average];
 }
 

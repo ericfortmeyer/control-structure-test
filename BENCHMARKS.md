@@ -15,4 +15,5 @@
 | **Multibyte string**      | 2414         | 955      | 1064                 | 910              | 302   |
 
 <span>* Results are in nanoseconds</span>
+
 [Go back](README.md)

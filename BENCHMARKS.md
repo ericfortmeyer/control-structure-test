@@ -13,5 +13,5 @@
 | **Medium failing string** | 10084        | 7614     | 7862                 | 6833             | 329   |
 | **Short failing string**  | 493          | 341      | 376                  | 325              | 264   |
 | **Multibyte string**      | 2414         | 955      | 1064                 | 910              | 302   |
-
+<span>* Results are in nanoseconds</span>
 [Go back](README.md)

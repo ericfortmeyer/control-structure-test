@@ -11,15 +11,25 @@ use ControlStructureTest\TestPrinting\{
     Configuration\PrintResultConfig
 };
 
-/* nested files first since they are dependencies */
+/**
+ * Make this script callable from anywhere without changing it's behavior
+ */
+chdir(__DIR__);
+/**
+ *  Nested files first since they are dependencies
+ */
 array_map(fn ($file) => require $file, glob("*/*/*.php"));
-/* then.. */
+/*
+ * Then...
+ */
 array_map(fn ($file) => require $file, glob("*/*.php"));
-
-$testCaseArguments = (include "test_case_arguments.php");
-
-$result_information = Runner::runAllTestsWith(...$testCaseArguments);
-
+/*
+ * Retrieve the arguments for the tests
+ */
+$test_case_arguments = include "test_case_arguments.php";
+/*
+ * Run tests and print results
+ */
+$result_information = Runner::runAllTestsWith(...$test_case_arguments);
 $printer_config = new PrintResultConfig(...$result_information);
-
 Printer::printTestResultsUsing($printer_config);

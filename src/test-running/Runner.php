@@ -6,9 +6,9 @@ namespace ControlStructureTest\TestRunning;
 
 final class Runner
 {
-    private const TEST_ITERATIONS = 1E+2;
-    private const SYSTEMS_UNDER_TEST_NAMESPACE = "ControlStructureTest\ControlStructuresUnderTest";
-    private const FUNCTIONS_WITH_STRING_ARGS = [ self::SYSTEMS_UNDER_TEST_NAMESPACE . "\\" . "regex" ];
+    private const TEST_ITERATIONS = 1E+2,
+                  SYSTEMS_UNDER_TEST_NAMESPACE = "ControlStructureTest\ControlStructuresUnderTest",
+                  FUNCTIONS_WITH_STRING_ARGS = [ self::SYSTEMS_UNDER_TEST_NAMESPACE . "\\" . "regex" ];
     
     public static function runAllTestsWith(array $test_cases, array $labels_for_arguments, array $functions_to_test_with_their_names): array
     {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ControlStructureTest\SystemsUnderTest;
+namespace ControlStructureTest\ControlStructuresUnderTest;
 
-use function ControlStructureTest\SystemsUnderTest\ValidatingLogic\isNotAlphanumeric;
+use function ControlStructureTest\ControlStructuresUnderTest\StringValidating\isNotAlphanumeric;
 
 function foreachByValue(array $chars): bool {
     foreach ($chars as $chr) {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ControlStructureTest\SystemsUnderTest;
+namespace ControlStructureTest\ControlStructuresUnderTest;
 
-use function ControlStructureTest\SystemsUnderTest\ValidatingLogic\isNotAlphanumeric;
+use function ControlStructureTest\ControlStructuresUnderTest\StringValidating\isNotAlphanumeric;
 
 function forLoop(array $chars): bool {
     for ($i = 0, $length = count($chars); $i < $length; ++$i) {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ControlStructureTest\SystemsUnderTest;
+namespace ControlStructureTest\ControlStructuresUnderTest;
 
-use function ControlStructureTest\SystemsUnderTest\ValidatingLogic\isNotAlphanumeric;
+use function ControlStructureTest\ControlStructuresUnderTest\StringValidating\isNotAlphanumeric;
 
 function checkNextCharacter(bool $previous_result, string $chr) {
     $chr_code = mb_ord($chr);

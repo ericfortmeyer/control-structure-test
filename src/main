@@ -1,0 +1,25 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+namespace ControlStructureTest;
+
+use ControlStructureTest\TestRunning\Runner;
+use ControlStructureTest\TestPrinting\{
+    Printer,
+    Configuration\PrintResultConfig
+};
+
+/* nested files first since they are dependencies */
+array_map(fn ($file) => require $file, glob("*/*/*.php"));
+/* then.. */
+array_map(fn ($file) => require $file, glob("*/*.php"));
+
+$testCaseArguments = (include "test_case_arguments.php");
+
+$result_information = Runner::runAllTestsWith(...$testCaseArguments);
+
+$printer_config = new PrintResultConfig(...$result_information);
+
+Printer::printTestResultsUsing($printer_config);

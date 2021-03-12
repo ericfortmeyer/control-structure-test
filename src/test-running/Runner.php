@@ -27,15 +27,6 @@ final class Runner
         };
     }
 
-    private static function testSingleIteration(callable $function, string $arg): void
-    {
-        if (self::shouldNotBeRunWithStringArgument($function)) {
-            $function(self::stringToArray($arg));
-        } else {
-            $function($arg);
-        }
-    }
-
     private static function shouldNotBeRunWithStringArgument(callable $function): bool
     {
         return false === in_array($function, self::FUNCTIONS_WITH_STRING_ARGS);
@@ -51,9 +42,10 @@ final class Runner
         $max = PHP_INT_MIN;
         $min = PHP_INT_MAX;
         $sum = 0;
+        $arg = self::shouldNotBeRunWithStringArgument($function) ? self::stringToArray($arg) : $arg;
         for ($i = 0; $i < self::TEST_ITERATIONS; ++$i) {
             $result =- hrtime(true);
-            self::testSingleIteration($function, $arg);
+            $function($arg);
             $result += hrtime(true);
             $max = $max > $result ? $max : $result;
             $min = $min < $result ? $min : $result;
@@ -81,7 +73,7 @@ final class Runner
 
     private static function getResults(string $given_string_argument, int &$min, string &$winner): \Closure
     {
-        return function (callable $function_under_test, string $name_of_function_under_test) use ($given_string_argument, $min, $winner): array {
+        return function (callable $function_under_test, string $name_of_function_under_test) use ($given_string_argument, &$min, &$winner): array {
             [$max_for_this_function, $min_for_this_function, $average_for_this_function] =
                 self::testFunction($function_under_test, $given_string_argument);
             self::updateWinnerInfoIfFastestSoFar($min, $winner, $average_for_this_function, $name_of_function_under_test);

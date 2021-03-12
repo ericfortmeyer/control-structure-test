@@ -6,9 +6,9 @@ namespace ControlStructureTest\TestPrinting\Configuration;
 
 final class PrintResultConfig
 {
-    public $results_to_print = [];
-    public $test_iterations = PHP_FLOAT_MIN;
-    public $execution_time_for_tests = PHP_FLOAT_MIN;
+    private $results_to_print = [];
+    private $test_iterations = PHP_FLOAT_MIN;
+    private $execution_time_for_tests = PHP_FLOAT_MIN;
 
     public function __construct(array $results, float $iterations_run, float $execution_time)
     {

@@ -3,4 +3,4 @@
 RESULTS_DIR=results
 
 [[ -d $RESULTS_DIR ]] || mkdir $RESULTS_DIR;
-./src/control_structure_efficiency_test > $RESULTS_DIR/$(date '+%Y%m%d%H%M%S')
+./src/main > $RESULTS_DIR/$(date '+%Y%m%d%H%M%S')

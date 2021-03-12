@@ -19,6 +19,7 @@ $testCases = array_merge(
 );
 
 $test_information = (include "test_case_names.php");
+
 return [
     $testCases,
     array_map(fn (string $str) => str_replace("_", " ", $str), array_keys($testCases)),

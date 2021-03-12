@@ -14,6 +14,6 @@
 | **Short failing string**  | 493          | 341      | 376                  | 325              | 264   |
 | **Multibyte string**      | 2414         | 955      | 1064                 | 910              | 302   |
 
-<span>* Results are in nanoseconds</span>
+<span style="color: burgundy">*</span> Results are in nanoseconds
 
 [Go back](README.md)
